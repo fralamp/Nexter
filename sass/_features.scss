@@ -1,0 +1,42 @@
+.features {
+    grid-column: center-start / center-end;
+
+    margin: 15rem 0;
+
+
+   @supports(display: grid) {//если браузер поддерживает гриды
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));//при уменьшении размеров вьюпорта, ячейки будут автоматически перемещаться вниз за счёт "auto-fit", при этом не меньше 250Px
+    grid-gap: 6rem;
+    // grid-template-rows: auto auto; можно и не записывать, всё равно строки будут заданы неявно 
+    align-items: start;// иначе контент ячейки расстянется и часть текста съедет к середине
+   }
+}
+
+.feature {
+    float: left;
+    width: 33.3333%;
+    margin-bottom: 6rem;
+    
+    @supports(display: grid){
+        width: auto;
+        margin-bottom: 0;
+    }
+
+    display: grid;
+    grid-template-columns: min-content 1fr; // min-cont да бы не сжимало иконку
+    grid-row-gap: 1.5rem;
+    grid-column-gap: 2.5rem;
+
+    &__icon {
+        fill: $color-primary;
+        width: 4.5rem;
+        height: 4.5rem;
+        grid-row: 1 / span 2;// в случае явного объявления сетки, можно было использовать "-1", но так в данном случае сетки неявна объявлена, только "span"
+        transform: translateY(-1rem);
+    }
+
+    &__text {
+        font-size: 1.7rem;
+    }
+}
